@@ -23,9 +23,7 @@ class Trie:
         for letter in word:
             if letter not in node.nodes:
                 node.nodes[letter] = TrieNode(letter)
-                node = TrieNode(letter)
-            else:
-                node = node.nodes[letter]
+            node = node.nodes[letter]
         
         node.leaf = True
         
@@ -45,13 +43,15 @@ class Trie:
         
         node = self.root
         
+        new_word = word.lower()
     
-        for letter in word:
+        for letter in new_word:
             if letter not in node.nodes:
                 return False
             node = node.nodes[letter]
         return node.leaf
-
+    
+    
 class GameDictionary(BoggleDictionary):
     """
     Your implementation of BoggleDictionary.
@@ -60,15 +60,15 @@ class GameDictionary(BoggleDictionary):
     def __init__(self):
         
 
-                
+        self.l = []       
         self.game_dict = {}
         self.t = Trie() # use this
         
-        WORDS_FILE = "words.txt"
-        with open(WORDS_FILE) as file:
-            for line in file:
-                word = line.strip().upper()
-                self.t.insert_word(word)
+        # WORDS_FILE = "words.txt"
+        # with open(WORDS_FILE) as file:
+        #     for line in file:
+        #         word = line.strip().upper()
+        #         self.t.insert_word(word)
         # with open(WORDS_FILE) as fin:
         #     for line in fin:
         #         line = line.strip().upper()
@@ -84,7 +84,11 @@ class GameDictionary(BoggleDictionary):
         #         word = line.strip().upper()
         #         if len(word) > 0:
         #             self.game_dict[word] = len(word)
-        return self.t
+        with open(filename) as file:
+            for line in file:
+                word = line.strip().lower()
+                self.t.insert_word(word)
+                self.l.append(word)
                 
                 # self.words.add(line)
                     
@@ -109,7 +113,9 @@ class GameDictionary(BoggleDictionary):
         # raise NotImplementedError("method contains") # TODO: implement your code here
 
     def __iter__(self) -> typing.Iterator[str]:
-        raise NotImplementedError("method __iter__") # TODO: implement your code here
+        
+        return self.l.__iter__()
+        # raise NotImplementedError("method __iter__") # TODO: implement your code here
 
 
 
