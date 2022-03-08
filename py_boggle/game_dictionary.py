@@ -44,6 +44,7 @@ class Trie:
         
         node = self.root
         
+        word = word.lower()
     
         for letter in word:
             if letter not in node.nodes:
@@ -104,19 +105,19 @@ class GameDictionary(BoggleDictionary):
   
         # raise NotImplementedError("method contains") # TODO: implement your code here
 
-    class MyIterator:
-        def __init__(self, my_dict):
+    # class MyIterator:
+    #     def __init__(self, my_dict):
             
-            self.my_trie = my_dict
+    #         self.my_trie = my_dict
                 
-        def __iter__(self):
-            pass
+    #     def __iter__(self):
+    #         pass
         
-        def __next__(self):
-            if True:
-                pass
-            else:
-                raise StopIteration
+    #     def __next__(self):
+    #         if True:
+    #             pass
+    #         else:
+    #             raise StopIteration
             
     
     def __iter__(self) -> typing.Iterator[str]:
